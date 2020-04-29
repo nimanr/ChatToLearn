@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/nimanr/ChatToLearn/issues"
   },
-  "homepage": "https://github.com/nimanr/ChatToLearn#readme"
+  "homepage": "https://github.com/nimanr/ChatToLearn#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
