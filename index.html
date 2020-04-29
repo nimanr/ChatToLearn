@@ -54,7 +54,20 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      // code goes here
+      $(() => {
+        $("#send").click(() => {
+          const message = {
+            name: $("#name").val(),
+            message: $("#message").val(),
+          };
+          addMessage({ name: "nima", message: "hello" });
+        });
+      });
+
+      const addMessage = (message) =>
+        $("#messages").append(
+          `<h4> ${message.name} </h4> <p> ${message.message} </p>`
+        );
     </script>
   </body>
 </html>
