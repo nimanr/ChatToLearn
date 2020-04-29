@@ -55,33 +55,35 @@
     ></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      var socket = io();
+      const socket = io();
       $(() => {
         $("#send").click(() => {
           const message = {
             name: $("#name").val(),
-            message: $("#message").val(),
+            text: $("#message").val(),
           };
+          $("#name").val("");
+          $("#message").val("");
           postMessage(message);
         });
         getMessages();
       });
 
       const getMessages = () => {
-        $.get("http://localhost:3000/messages", (data) => {
+        $.get("http://localhost:3000/messageEndpoint", (data) => {
           data.forEach(addMessage);
         });
       };
 
-      const postMessage = (message) =>
-        $.post("http://localhost:3000/messages", message);
+      const postMessage = (messageObject) =>
+        $.post("http://localhost:3000/messageEndpoint", messageObject);
 
-      const addMessage = (message) =>
+      const addMessage = (inputMessage) =>
         $("#messages").append(
-          `<h4> ${message.name} </h4> <p> ${message.message} </p>`
+          `<h4> ${inputMessage.name} </h4> <p> ${inputMessage.text} </p>`
         );
 
-      socket.on("message", addMessage);
+      socket.on("messageIncome", addMessage);
     </script>
   </body>
 </html>

@@ -4,23 +4,26 @@ const bodyParser = require("body-parser");
 const port = 3000;
 const app = express();
 const http = require("http").Server(app);
+
 const io = require("socket.io")(http);
+
+const connectionUrl =
+  "mongodb+srv://nima:nima@cluster0-b9umh.mongodb.net/test?retryWrites=true&w=majority";
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-let messages = [];
+let messagesStorage = [];
 
-app.get("/messages", (req, res) => {
-  res.send(messages);
+app.get("/messageEndpoint", (request, response) => {
+  response.send(messagesStorage);
 });
 
-app.post("/messages", (req, res) => {
-  const incoming = req.body;
-  io.emit("message", req.body);
-  messages.push({ name: incoming.name, message: incoming.message });
-  res.sendStatus(200);
+app.post("/messageEndpoint", (request, response) => {
+  messagesStorage.push(request.body);
+  io.emit("messageIncome", request.body);
+  response.sendStatus(200);
 });
 
 io.on("connection", (socket) => {
@@ -28,5 +31,5 @@ io.on("connection", (socket) => {
 });
 
 http.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+  console.log(`server is runnig on the port ${port}`);
 });
