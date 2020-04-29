@@ -60,6 +60,8 @@
             name: $("#name").val(),
             message: $("#message").val(),
           };
+          postMessage(message);
+          addMessage({ name: "You", message: message.message });
         });
         getMessages();
       });
@@ -69,6 +71,9 @@
           data.forEach(addMessage);
         });
       };
+
+      const postMessage = (message) =>
+        $.post("http://localhost:3000/messages", message);
 
       const addMessage = (message) =>
         $("#messages").append(
