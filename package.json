@@ -1,0 +1,24 @@
+{
+  "name": "chat-app",
+  "version": "0.0.1",
+  "description": "A socket and express server used chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nimanr/ChatToLearn.git"
+  },
+  "keywords": [
+    "Chat",
+    "Socket",
+    "Application"
+  ],
+  "author": "Nima Azaraeen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nimanr/ChatToLearn/issues"
+  },
+  "homepage": "https://github.com/nimanr/ChatToLearn#readme"
+}
