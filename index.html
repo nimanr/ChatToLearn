@@ -60,9 +60,15 @@
             name: $("#name").val(),
             message: $("#message").val(),
           };
-          addMessage({ name: "nima", message: "hello" });
         });
+        getMessages();
       });
+
+      const getMessages = () => {
+        $.get("http://localhost:3000/messages", (data) => {
+          data.forEach(addMessage);
+        });
+      };
 
       const addMessage = (message) =>
         $("#messages").append(
