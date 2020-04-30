@@ -4,11 +4,11 @@ const bodyParser = require("body-parser");
 const port = 3000;
 const app = express();
 const http = require("http").Server(app);
+const db = require("./dbConfig");
 
 const io = require("socket.io")(http);
 
-const connectionUrl =
-  "mongodb+srv://nima:nima@cluster0-b9umh.mongodb.net/test?retryWrites=true&w=majority";
+const connectionUrl = `mongodb+srv://${db.username}:${db.password}@cluster0-b9umh.mongodb.net/test?retryWrites=true&w=majority`;
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
